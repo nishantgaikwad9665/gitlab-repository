@@ -1,12 +1,27 @@
 variables:
-  IMAGE_TAG: nishantgaikwad9665/python:$CI_COMMIT_SHORT_SHA
+  IMAGE_TAG1: nishantgaikwad9665/python:$CI_COMMIT_SHORT_SHA
+  IMAGE_TAG2: nishantgaikwad9665/node:$CI_COMMIT_SHORT_SHA
 
-build:
+build_python:
   image: docker:20.10.16
   stage: build
   services:
     - docker:20.10.16-dind
   script:
     - echo "$DOCKER_PASSWORD" | docker login -u "nishantgaikwad9665" --password-stdin
-    - docker build -t $IMAGE_TAG .
-    - docker push $IMAGE_TAG
+    - docker build -t $IMAGE_TAG1 .
+    - docker push $IMAGE_TAG1
+  rules:
+    - if: '$STACK == "python"'
+
+build_node:
+  image: docker:20.10.16
+  stage: build
+  services:
+    - docker:20.10.16-dind
+  script:
+    - echo "$DOCKER_PASSWORD" | docker login -u "nishantgaikwad9665" --password-stdin
+    - docker build -t $IMAGE_TAG2 .
+    - docker push $IMAGE_TAG2
+  rules:
+    - if: '$STACK == "npm"'
