@@ -1,0 +1,12 @@
+# Top-level include
+include:
+  - local: 'ci-templates/lint.yml'
+  - local: 'ci-templates/scan.yml'
+  - local: 'ci-templates/build.yml'
+  - local: 'ci-templates/deploy.yml'
+
+stages:
+  - lint
+  - scan
+  - build
+  - deploy

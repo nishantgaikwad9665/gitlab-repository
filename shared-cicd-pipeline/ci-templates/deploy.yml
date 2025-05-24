@@ -1,0 +1,5 @@
+deploy-eks:
+  stage: deploy
+  image: alpine:latest
+  script:
+    - echo "Deploying to EKS"

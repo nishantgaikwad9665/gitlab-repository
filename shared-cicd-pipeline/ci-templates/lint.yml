@@ -1,0 +1,16 @@
+lint:
+  stage: lint
+  image: python:3.9
+  script:
+    - pip install flake8
+    - flake8 .
+  rules:
+    - if: '$STACK == "python"'
+
+lint:
+  stage: lint
+  image: node:20
+  script:
+    - echo "Linting done"
+  rules:
+    - if: '$STACK == "npm"'    
