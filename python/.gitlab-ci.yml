@@ -1,0 +1,7 @@
+variables:
+  STACK: "python"
+
+include:
+  - project: 'kone2554021/shared-cicd-pipeline'
+    ref: main
+    file: '.gitlab-ci.yml'
